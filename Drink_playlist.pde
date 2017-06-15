@@ -118,8 +118,9 @@ void mutePlayers() {
   }
 }
 
-//void nextSong() {
-//  if (currentClass == 6 || currentClass == 4) {
-//    playDrinkPlaylist(lastClass);
-//  }
-//}
+void nextSong() {
+  if (currentClass == 6 || currentClass == 4) {
+    currentClass = lastClass;
+    playDrinkPlaylist(lastClass);
+  }
+}
