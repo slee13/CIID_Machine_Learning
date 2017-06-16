@@ -12,7 +12,7 @@ AudioPlayer[] winePlayer;
 
 int lastClass = 0;
 int currentClass = 0;
-int playlistSize = 3;
+int playlistSize = 5;
 int lastSong, lastCoffeeSong, lastBeerSong, lastWineSong = 0;
 int currentSong, currentCoffeeSong, currentBeerSong, currentWineSong = 0;
 
@@ -22,20 +22,26 @@ void setup()
   minim = new Minim(this);
   oscP5 = new OscP5(this, 8000);
   
-  coffeePlayer = new AudioPlayer[3];
+  coffeePlayer = new AudioPlayer[playlistSize];
   coffeePlayer[0] = minim.loadFile("1.mp3");
   coffeePlayer[1] = minim.loadFile("2.mp3");
   coffeePlayer[2] = minim.loadFile("3.mp3");
+  coffeePlayer[3] = minim.loadFile("4.mp3");
+  coffeePlayer[4] = minim.loadFile("5.mp3");
   
-  beerPlayer = new AudioPlayer[3];
-  beerPlayer[0] = minim.loadFile("4.mp3");
-  beerPlayer[1] = minim.loadFile("5.mp3");
-  beerPlayer[2] = minim.loadFile("6.mp3");
+  beerPlayer = new AudioPlayer[playlistSize];
+  beerPlayer[0] = minim.loadFile("6.mp3");
+  beerPlayer[1] = minim.loadFile("7.mp3");
+  beerPlayer[2] = minim.loadFile("8.mp3");
+  beerPlayer[3] = minim.loadFile("9.mp3");
+  beerPlayer[4] = minim.loadFile("10.mp3");
   
-  winePlayer = new AudioPlayer[3];
-  winePlayer[0] = minim.loadFile("7.mp3");
-  winePlayer[1] = minim.loadFile("8.mp3");
-  winePlayer[2] = minim.loadFile("9.mp3");
+  winePlayer = new AudioPlayer[playlistSize];
+  winePlayer[0] = minim.loadFile("11.mp3");
+  winePlayer[1] = minim.loadFile("12.mp3");
+  winePlayer[2] = minim.loadFile("13.mp3");
+  winePlayer[3] = minim.loadFile("14.mp3");
+  winePlayer[4] = minim.loadFile("15.mp3");
 }
 
 void draw()
@@ -60,45 +66,45 @@ void playDrinkPlaylist(int playlist) {
   if (playlist == 1) { 
     println(currentCoffeeSong);
           mutePlayers();
-          //if(!coffeePlayer[lastCoffeeSong%3].isPlaying()) {
-          //  println(currentCoffeeSong%3);
-          //  coffeePlayer[currentCoffeeSong%3].play();
+          //if(!coffeePlayer[lastCoffeeSong%playlistSize].isPlaying()) {
+          //  println(currentCoffeeSong%playlistSize);
+          //  coffeePlayer[currentCoffeeSong%playlistSize].play();
           //  lastCoffeeSong = currentCoffeeSong;
           //  currentCoffeeSong++;
           //}
-          if(!coffeePlayer[lastSong%3].isPlaying()) {
-            println(currentSong%3);
-            coffeePlayer[currentSong%3].play();
+          if(!coffeePlayer[lastSong%playlistSize].isPlaying()) {
+            println(currentSong%5);
+            coffeePlayer[currentSong%playlistSize].play();
             lastSong = currentSong;
             currentSong++;
           }
         }
         if (currentClass == 2) {
           mutePlayers();
-          //if(!beerPlayer[lastBeerSong%3].isPlaying()) {
-          //  println(currentBeerSong%3);
-          //  beerPlayer[currentBeerSong%3].play();
+          //if(!beerPlayer[lastBeerSong%playlistSize].isPlaying()) {
+          //  println(currentBeerSong%playlistSize);
+          //  beerPlayer[currentBeerSong%playlistSize].play();
           //  lastBeerSong = currentBeerSong;
           //  currentBeerSong++;
           //}
-          if(!beerPlayer[lastSong%3].isPlaying()) {
-            println(currentSong%3);
-            beerPlayer[currentSong%3].play();
+          if(!beerPlayer[lastSong%playlistSize].isPlaying()) {
+            println(currentSong%playlistSize);
+            beerPlayer[currentSong%playlistSize].play();
             lastSong = currentSong;
             currentSong++;
           }
         }
         if (currentClass == 3) {
           mutePlayers();
-          //if(!winePlayer[lastWineSong%3].isPlaying()) {
-          //  println(currentWineSong%3);
-          //  winePlayer[currentWineSong%3].play();
+          //if(!winePlayer[lastWineSong%playlistSize].isPlaying()) {
+          //  println(currentWineSong%playlistSize);
+          //  winePlayer[currentWineSong%playlistSize].play();
           //  lastWineSong = currentCoffeeSong;
           //  currentWineSong++;
           //}
-          if(!winePlayer[lastSong%3].isPlaying()) {
-            println(currentSong%3);
-            winePlayer[currentSong%3].play();
+          if(!winePlayer[lastSong%playlistSize].isPlaying()) {
+            println(currentSong%playlistSize);
+            winePlayer[currentSong%playlistSize].play();
             lastSong = currentSong;
             currentSong++;
           }
@@ -119,7 +125,7 @@ void mutePlayers() {
 }
 
 void nextSong() {
-  if (currentClass == 6 || currentClass == 4) {
+  if (currentClass == 4) {
     currentClass = lastClass;
     playDrinkPlaylist(lastClass);
   }
